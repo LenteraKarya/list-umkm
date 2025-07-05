@@ -34,6 +34,8 @@
             --shadow-lg: 0 10px 25px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05);
             --shadow-xl: 0 20px 50px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
             --gold: #d4af37; /* Gold color for premium accents */
+            --fishery: #3182ce; /* Blue for fishery category */
+            --livestock: #805ad5; /* Purple for livestock category */
         }
         
         * {
@@ -650,7 +652,6 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: var(--accent);
             color: white;
             padding: 0.4rem 1.2rem;
             border-radius: 50px;
@@ -671,6 +672,22 @@
         
         .umkm-badge.service {
             background: var(--primary);
+        }
+        
+        .umkm-badge.fashion {
+            background: #9f7aea;
+        }
+        
+        .umkm-badge.agriculture {
+            background: #38a169;
+        }
+        
+        .umkm-badge.fishery {
+            background: var(--fishery);
+        }
+        
+        .umkm-badge.livestock {
+            background: var(--livestock);
         }
         
         .umkm-image-container {
@@ -923,55 +940,6 @@
         .btn-small {
             padding: 0.8rem 1.5rem;
             font-size: 0.95rem;
-        }
-        
-        /* Stats Section */
-        .stats-section {
-            background: linear-gradient(135deg, rgba(42, 67, 101, 0.05), rgba(26, 54, 93, 0.08));
-            padding: 6rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .stat-item {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            border-color: rgba(230, 126, 34, 0.1);
-        }
-        
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .stat-label {
-            font-size: 1.2rem;
-            color: var(--text);
-            font-weight: 500;
         }
         
         /* Category Tabs */
@@ -1796,10 +1764,6 @@
                 font-size: 2.2rem;
             }
             
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
             .umkm-main-image {
                 height: 350px;
             }
@@ -1969,14 +1933,6 @@
             
             .section-title {
                 font-size: 1.8rem;
-            }
-            
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .stat-item {
-                padding: 2rem 1.5rem;
             }
             
             .umkm-main-image {
@@ -2149,7 +2105,7 @@
                     <i class="fas fa-user-plus"></i> Daftarkan UMKM Anda
                 </a>
             </div>
-            <a href="#stats" class="scroll-down">
+            <a href="#umkm-list" class="scroll-down">
                 <i class="fas fa-chevron-down"></i>
             </a>
         </div>
@@ -2180,7 +2136,6 @@
             <div class="nav-links" id="navLinks">
                 <a href="#home">Beranda</a>
                 <a href="#umkm-list">Daftar UMKM</a>
-                <a href="#stats">Statistik</a>
                 
                 <!-- Improved UMKM Zone Menu with Dropdown -->
                 <div class="dropdown">
@@ -2192,6 +2147,8 @@
                         <a href="#" data-category="service">Jasa</a>
                         <a href="#" data-category="fashion">Fashion</a>
                         <a href="#" data-category="agriculture">Pertanian</a>
+                        <a href="#" data-category="fishery">Perikanan</a>
+                        <a href="#" data-category="livestock">Peternakan</a>
                     </div>
                 </div>
                 
@@ -2203,29 +2160,6 @@
     </nav>
     
     <div class="container">
-        <!-- Stats Section -->
-        <section class="stats-section" id="stats">
-            <h2 class="section-title">Statistik UMKM Situbondo</h2>
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-number" id="umkmCount">750+</div>
-                    <div class="stat-label">UMKM Terdaftar</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="categoryCount">12+</div>
-                    <div class="stat-label">Kategori Bisnis</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="districtCount">17</div>
-                    <div class="stat-label">Kecamatan</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="yearCount">5+</div>
-                    <div class="stat-label">Tahun Berkembang</div>
-                </div>
-            </div>
-        </section>
-        
         <!-- UMKM List Section -->
         <section class="umkm-list" id="umkm-list">
             <h2 class="section-title">Daftar UMKM Situbondo</h2>
@@ -2237,6 +2171,8 @@
                 <button class="category-btn" data-category="service">Jasa</button>
                 <button class="category-btn" data-category="fashion">Fashion</button>
                 <button class="category-btn" data-category="agriculture">Pertanian</button>
+                <button class="category-btn" data-category="fishery">Perikanan</button>
+                <button class="category-btn" data-category="livestock">Peternakan</button>
             </div>
             
             <div class="umkm-grid" id="umkmGrid">
@@ -2437,7 +2373,7 @@
                 
                 <!-- UMKM ITEM 4 - FASHION -->
                 <div class="umkm-card" data-category="fashion">
-                    <span class="umkm-badge craft">Fashion</span>
+                    <span class="umkm-badge fashion">Fashion</span>
                     <div class="umkm-image-container">
                         <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Batik Situbondo Collection" class="umkm-image lazy" loading="lazy">
                     </div>
@@ -2502,7 +2438,7 @@
                 
                 <!-- UMKM ITEM 5 - PERTANIAN -->
                 <div class="umkm-card" data-category="agriculture">
-                    <span class="umkm-badge food">Pertanian</span>
+                    <span class="umkm-badge agriculture">Pertanian</span>
                     <div class="umkm-image-container">
                         <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Madu Hutan Asli Situbondo" class="umkm-image lazy" loading="lazy">
                     </div>
@@ -2629,6 +2565,136 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- UMKM ITEM 7 - PERIKANAN -->
+                <div class="umkm-card" data-category="fishery">
+                    <span class="umkm-badge fishery">Perikanan</span>
+                    <div class="umkm-image-container">
+                        <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Ikan Segar Pak Budi" class="umkm-image lazy" loading="lazy">
+                    </div>
+                    <div class="umkm-details">
+                        <h3 class="umkm-title">Ikan Segar Pak Budi</h3>
+                        <div class="umkm-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Desa Tanjung Pecinan, Kec. Mangaran</span>
+                        </div>
+                        <div class="umkm-contact">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+62 812 3456 7891</span>
+                        </div>
+                        <span class="umkm-category">Produk Perikanan</span>
+                        
+                        <div class="umkm-detail-expanded">
+                            <div class="umkm-carousel">
+                                <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Ikan Segar - Produk" class="umkm-main-image lazy" loading="lazy" id="main-image-7">
+                                <div class="umkm-thumbnails">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Ikan Segar - Produk" class="thumbnail active lazy" loading="lazy" onclick="changeMainImage('main-image-7', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Ikan Segar - Proses Penangkapan" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-7', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Ikan Segar - Nelayan" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-7', this)">
+                                </div>
+                            </div>
+                            
+                            <p class="umkm-description">
+                                Penyedia ikan segar hasil tangkapan nelayan lokal Situbondo. 
+                                Kami menjamin kesegaran produk dengan sistem rantai dingin dari laut langsung ke konsumen. 
+                                Tersedia berbagai jenis ikan laut khas Situbondo.
+                            </p>
+                            
+                            <div class="umkm-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Berdiri Sejak:</span>
+                                    <span class="spec-value">2010</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Jam Operasional:</span>
+                                    <span class="spec-value">04.00 - 12.00 (Setiap Hari)</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Produk Unggulan:</span>
+                                    <span class="spec-value">Ikan Tongkol, Cakalang, Tenggiri, Kakap</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Pengolahan:</span>
+                                    <span class="spec-value">Segar, Asin, Pindang, Frozen</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Sertifikasi:</span>
+                                    <span class="spec-value">HACCP, Halal</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-outline btn-small toggle-description">Detail</button>
+                            <a href="https://lenterakarya.github.io/umkm-online7/" class="btn btn-primary btn-small" target="_blank">Kunjungi UMKM</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UMKM ITEM 8 - PETERNAKAN -->
+                <div class="umkm-card" data-category="livestock">
+                    <span class="umkm-badge livestock">Peternakan</span>
+                    <div class="umkm-image-container">
+                        <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Susu Kambing Etawa Sumber Rejeki" class="umkm-image lazy" loading="lazy">
+                    </div>
+                    <div class="umkm-details">
+                        <h3 class="umkm-title">Susu Kambing Etawa Sumber Rejeki</h3>
+                        <div class="umkm-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Desa Sumberwaru, Kec. Banyuputih</span>
+                        </div>
+                        <div class="umkm-contact">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+62 813 4567 8902</span>
+                        </div>
+                        <span class="umkm-category">Produk Peternakan</span>
+                        
+                        <div class="umkm-detail-expanded">
+                            <div class="umkm-carousel">
+                                <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Susu Kambing - Produk" class="umkm-main-image lazy" loading="lazy" id="main-image-8">
+                                <div class="umkm-thumbnails">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Susu Kambing - Produk" class="thumbnail active lazy" loading="lazy" onclick="changeMainImage('main-image-8', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Susu Kambing - Peternakan" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-8', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Susu Kambing - Proses Produksi" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-8', this)">
+                                </div>
+                            </div>
+                            
+                            <p class="umkm-description">
+                                Susu kambing etawa murni dengan kualitas premium. 
+                                Diproduksi dengan standar higienis tinggi dan tanpa bahan pengawet. 
+                                Tersedia dalam bentuk segar, pasteurisasi, dan bubuk dengan berbagai varian rasa.
+                            </p>
+                            
+                            <div class="umkm-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Berdiri Sejak:</span>
+                                    <span class="spec-value">2014</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Jam Operasional:</span>
+                                    <span class="spec-value">07.00 - 17.00 (Senin-Sabtu)</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Produk Unggulan:</span>
+                                    <span class="spec-value">Susu Segar, Susu Pasteurisasi, Susu Bubuk</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Varian Rasa:</span>
+                                    <span class="spec-value">Original, Coklat, Strawberry, Madu</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Sertifikasi:</span>
+                                    <span class="spec-value">BPOM, Halal</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-outline btn-small toggle-description">Detail</button>
+                            <a href="https://lenterakarya.github.io/umkm-online8/" class="btn btn-primary btn-small" target="_blank">Kunjungi UMKM</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -2714,6 +2780,8 @@
                                 <option value="service">Jasa</option>
                                 <option value="fashion">Fashion</option>
                                 <option value="agriculture">Pertanian</option>
+                                <option value="fishery">Perikanan</option>
+                                <option value="livestock">Peternakan</option>
                                 <option value="other">Lainnya</option>
                             </select>
                         </div>
@@ -2836,7 +2904,6 @@
                 <ul class="footer-links">
                     <li><a href="#home">Beranda</a></li>
                     <li><a href="#umkm-list">Daftar UMKM</a></li>
-                    <li><a href="#stats">Statistik</a></li>
                     <li><a href="#map">Peta UMKM</a></li>
                     <li><a href="#register">Daftarkan UMKM</a></li>
                     <li><a href="#contact">Kontak</a></li>
@@ -2851,6 +2918,8 @@
                     <li><a href="#" data-category="service">Jasa</a></li>
                     <li><a href="#" data-category="fashion">Fashion</a></li>
                     <li><a href="#" data-category="agriculture">Pertanian</a></li>
+                    <li><a href="#" data-category="fishery">Perikanan</a></li>
+                    <li><a href="#" data-category="livestock">Peternakan</a></li>
                     <li><a href="#" data-category="all">Lihat Semua</a></li>
                 </ul>
             </div>
@@ -3648,7 +3717,9 @@
                                            category === 'craft' ? 'Kerajinan' : 
                                            category === 'service' ? 'Jasa' : 
                                            category === 'fashion' ? 'Fashion' : 
-                                           category === 'agriculture' ? 'Pertanian' : ''}</span>
+                                           category === 'agriculture' ? 'Pertanian' :
+                                           category === 'fishery' ? 'Perikanan' :
+                                           category === 'livestock' ? 'Peternakan' : ''}</span>
                     `;
                     
                     resultItem.addEventListener('click', function() {
