@@ -36,6 +36,7 @@
             --gold: #d4af37; /* Gold color for premium accents */
             --fishery: #3182ce; /* Blue for fishery category */
             --livestock: #805ad5; /* Purple for livestock category */
+            --equipment: #e53e3e; /* Red for equipment category */
         }
         
         * {
@@ -674,8 +675,8 @@
             background: var(--primary);
         }
         
-        .umkm-badge.fashion {
-            background: #9f7aea;
+        .umkm-badge.equipment {
+            background: var(--equipment);
         }
         
         .umkm-badge.agriculture {
@@ -2075,7 +2076,7 @@
     
     <!-- Background Music - Autoplay and Loop -->
     <audio id="bgMusic" loop autoplay>
-        <source src="https://github.com/LenteraKarya/jualan-kita/blob/main/assets/audio/Musik%20website.mp3?raw=true" type="audio/mpeg">
+        <source src="https://github.com/LenteraKarya/Lentera-Karya/blob/main/assets/audio/Musik%20website.mp3?raw=true" type="audio/mpeg">
     </audio>
     
     <!-- Partikel Animasi -->
@@ -2143,9 +2144,9 @@
                     <div class="dropdown-content">
                         <a href="#" data-category="all">Semua Kategori</a>
                         <a href="#" data-category="food">Makanan & Minuman</a>
-                        <a href="#" data-category="craft">Kerajinan Tangan</a>
+                        <a href="#" data-category="craft">Aneka Produk</a>
                         <a href="#" data-category="service">Jasa</a>
-                        <a href="#" data-category="fashion">Fashion</a>
+                        <a href="#" data-category="equipment">Peralatan</a>
                         <a href="#" data-category="agriculture">Pertanian</a>
                         <a href="#" data-category="fishery">Perikanan</a>
                         <a href="#" data-category="livestock">Peternakan</a>
@@ -2166,10 +2167,10 @@
             
             <div class="category-tabs">
                 <button class="category-btn active" data-category="all">Semua</button>
-                <button class="category-btn" data-category="food">Makanan</button>
-                <button class="category-btn" data-category="craft">Kerajinan</button>
+                <button class="category-btn" data-category="food">Makanan & Minuman</button>
+                <button class="category-btn" data-category="craft">Aneka Produk</button>
                 <button class="category-btn" data-category="service">Jasa</button>
-                <button class="category-btn" data-category="fashion">Fashion</button>
+                <button class="category-btn" data-category="equipment">Peralatan</button>
                 <button class="category-btn" data-category="agriculture">Pertanian</button>
                 <button class="category-btn" data-category="fishery">Perikanan</button>
                 <button class="category-btn" data-category="livestock">Peternakan</button>
@@ -2178,7 +2179,7 @@
             <div class="umkm-grid" id="umkmGrid">
                 <!-- UMKM ITEM 1 - MAKANAN -->
                 <div class="umkm-card" data-category="food">
-                    <span class="umkm-badge food">Makanan</span>
+                    <span class="umkm-badge food">Makanan & Minuman</span>
                     <div class="umkm-image-container">
                         <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Kue Lapis Legit Bu Siti" class="umkm-image lazy" loading="lazy">
                     </div>
@@ -2241,9 +2242,9 @@
                     </div>
                 </div>
                 
-                <!-- UMKM ITEM 2 - KERAJINAN -->
+                <!-- UMKM ITEM 2 - ANEKA PRODUK -->
                 <div class="umkm-card" data-category="craft">
-                    <span class="umkm-badge craft">Kerajinan</span>
+                    <span class="umkm-badge craft">Aneka Produk</span>
                     <div class="umkm-image-container">
                         <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Kerajinan Bambu Pak Joko" class="umkm-image lazy" loading="lazy">
                     </div>
@@ -2371,14 +2372,14 @@
                     </div>
                 </div>
                 
-                <!-- UMKM ITEM 4 - FASHION -->
-                <div class="umkm-card" data-category="fashion">
-                    <span class="umkm-badge fashion">Fashion</span>
+                <!-- UMKM ITEM 4 - PERALATAN -->
+                <div class="umkm-card" data-category="equipment">
+                    <span class="umkm-badge equipment">Peralatan</span>
                     <div class="umkm-image-container">
-                        <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Batik Situbondo Collection" class="umkm-image lazy" loading="lazy">
+                        <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Alat Pertanian Sumber Makmur" class="umkm-image lazy" loading="lazy">
                     </div>
                     <div class="umkm-details">
-                        <h3 class="umkm-title">Batik Situbondo Collection</h3>
+                        <h3 class="umkm-title">Alat Pertanian Sumber Makmur</h3>
                         <div class="umkm-address">
                             <i class="fas fa-map-marker-alt"></i>
                             <span>Jl. Diponegoro No. 28, Kota Situbondo</span>
@@ -2387,22 +2388,21 @@
                             <i class="fas fa-phone-alt"></i>
                             <span>+62 812 9876 5432</span>
                         </div>
-                        <span class="umkm-category">Batik & Fashion</span>
+                        <span class="umkm-category">Alat Berat & Ringan</span>
                         
                         <div class="umkm-detail-expanded">
                             <div class="umkm-carousel">
-                                <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Batik Situbondo - Produk" class="umkm-main-image lazy" loading="lazy" id="main-image-4">
+                                <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Alat Pertanian - Produk" class="umkm-main-image lazy" loading="lazy" id="main-image-4">
                                 <div class="umkm-thumbnails">
-                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Batik Situbondo - Produk" class="thumbnail active lazy" loading="lazy" onclick="changeMainImage('main-image-4', this)">
-                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Batik Situbondo - Proses Pembuatan" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-4', this)">
-                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Batik Situbondo - Motif Khas" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-4', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Alat Pertanian - Produk" class="thumbnail active lazy" loading="lazy" onclick="changeMainImage('main-image-4', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Alat Pertanian - Proses Pembuatan" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-4', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Alat Pertanian - Workshop" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-4', this)">
                                 </div>
                             </div>
                             
                             <p class="umkm-description">
-                                Batik khas Situbondo dengan motif unik yang terinspirasi dari alam dan budaya lokal. 
-                                Menggunakan teknik pewarnaan alami dan bahan katun berkualitas tinggi. 
-                                Tersedia dalam berbagai model pakaian dan aksesoris.
+                                Penyedia alat pertanian berkualitas untuk membantu meningkatkan produktivitas pertanian. 
+                                Kami menyediakan berbagai alat pertanian modern dan tradisional untuk berbagai kebutuhan.
                             </p>
                             
                             <div class="umkm-specs">
@@ -2416,15 +2416,15 @@
                                 </div>
                                 <div class="spec-item">
                                     <span class="spec-label">Produk Unggulan:</span>
-                                    <span class="spec-value">Baju Batik, Dress, Selendang, Tas</span>
+                                    <span class="spec-value">Traktor Mini, Mesin Penggiling, Alat Penyemprot</span>
                                 </div>
                                 <div class="spec-item">
-                                    <span class="spec-label">Teknik:</span>
-                                    <span class="spec-value">Batik Tulis, Batik Cap, Printing</span>
+                                    <span class="spec-label">Garansi:</span>
+                                    <span class="spec-value">1 Tahun untuk Mesin</span>
                                 </div>
                                 <div class="spec-item">
-                                    <span class="spec-label">Sertifikasi:</span>
-                                    <span class="spec-value">Hak Cipta Motif, Halal</span>
+                                    <span class="spec-label">Layanan:</span>
+                                    <span class="spec-value">Perbaikan & Perawatan</span>
                                 </div>
                             </div>
                         </div>
@@ -2501,9 +2501,9 @@
                     </div>
                 </div>
                 
-                <!-- UMKM ITEM 6 - MAKANAN -->
+                <!-- UMKM ITEM 6 - MAKANAN & MINUMAN -->
                 <div class="umkm-card" data-category="food">
-                    <span class="umkm-badge food">Makanan</span>
+                    <span class="umkm-badge food">Makanan & Minuman</span>
                     <div class="umkm-image-container">
                         <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Keripik Pisang Cap Jempol" class="umkm-image lazy" loading="lazy">
                     </div>
@@ -2776,9 +2776,9 @@
                             <select id="business-category" name="business-category" required>
                                 <option value="" disabled selected>Pilih kategori</option>
                                 <option value="food">Makanan & Minuman</option>
-                                <option value="craft">Kerajinan Tangan</option>
+                                <option value="craft">Aneka Produk</option>
                                 <option value="service">Jasa</option>
-                                <option value="fashion">Fashion</option>
+                                <option value="equipment">Peralatan</option>
                                 <option value="agriculture">Pertanian</option>
                                 <option value="fishery">Perikanan</option>
                                 <option value="livestock">Peternakan</option>
@@ -2914,9 +2914,9 @@
                 <h3>Kategori UMKM</h3>
                 <ul class="footer-links">
                     <li><a href="#" data-category="food">Makanan & Minuman</a></li>
-                    <li><a href="#" data-category="craft">Kerajinan Tangan</a></li>
+                    <li><a href="#" data-category="craft">Aneka Produk</a></li>
                     <li><a href="#" data-category="service">Jasa</a></li>
-                    <li><a href="#" data-category="fashion">Fashion</a></li>
+                    <li><a href="#" data-category="equipment">Peralatan</a></li>
                     <li><a href="#" data-category="agriculture">Pertanian</a></li>
                     <li><a href="#" data-category="fishery">Perikanan</a></li>
                     <li><a href="#" data-category="livestock">Peternakan</a></li>
@@ -3713,10 +3713,10 @@
                     resultItem.innerHTML = `
                         <h3>${item.querySelector('.umkm-title').textContent}</h3>
                         <p>${address} - ${description.substring(0, 150)}...</p>
-                        <span class="category">${category === 'food' ? 'Makanan' : 
-                                           category === 'craft' ? 'Kerajinan' : 
+                        <span class="category">${category === 'food' ? 'Makanan & Minuman' : 
+                                           category === 'craft' ? 'Aneka Produk' : 
                                            category === 'service' ? 'Jasa' : 
-                                           category === 'fashion' ? 'Fashion' : 
+                                           category === 'equipment' ? 'Peralatan' : 
                                            category === 'agriculture' ? 'Pertanian' :
                                            category === 'fishery' ? 'Perikanan' :
                                            category === 'livestock' ? 'Peternakan' : ''}</span>
