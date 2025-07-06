@@ -28,6 +28,7 @@
             --text-light: #718096;
             --success: #38a169;
             --warning: #dd6b20;
+            --error: #e53e3e;
             --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
@@ -1650,6 +1651,106 @@
             opacity: 1;
         }
         
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-status {
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .form-status.success {
+            background-color: rgba(56, 161, 105, 0.1);
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+        
+        .form-status.error {
+            background-color: rgba(229, 62, 62, 0.1);
+            color: var(--error);
+            border-left: 4px solid var(--error);
+        }
+        
+        /* Register Section */
+        .register {
+            background-color: #f8f9fa;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 4rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        .contact-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border-color: rgba(230, 126, 34, 0.1);
+        }
+        
+        .contact-form h3 {
+            margin-bottom: 2.5rem;
+            color: var(--dark);
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .contact-form h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
         /* Responsive */
         @media (max-width: 1200px) {
             .logo {
@@ -1864,6 +1965,10 @@
             
             .modal-content {
                 padding: 3rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -2637,48 +2742,53 @@
                 </div>
                 <div class="contact-form">
                     <h3>Form Pendaftaran UMKM</h3>
-                    <div id="formStatus" class="form-status" style="display: none;"></div>
-                    <form id="registerForm" action="https://formsubmit.co/lenterakaryasitubondo@gmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="Pendaftaran UMKM Baru">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                    <div id="formStatus" class="form-status"></div>
+                    <form id="registerForm">
                         <div class="form-group">
-                            <label for="business-name">Nama UMKM</label>
+                            <label for="business-name">Nama UMKM *</label>
                             <input type="text" id="business-name" name="business-name" required>
                         </div>
                         <div class="form-group">
-                            <label for="owner-name">Nama Pemilik</label>
+                            <label for="owner-name">Nama Pemilik *</label>
                             <input type="text" id="owner-name" name="owner-name" required>
                         </div>
                         <div class="form-group">
-                            <label for="business-address">Alamat UMKM</label>
+                            <label for="business-address">Alamat UMKM *</label>
                             <input type="text" id="business-address" name="business-address" required>
                         </div>
                         <div class="form-group">
-                            <label for="business-phone">Nomor Telepon</label>
+                            <label for="business-phone">Nomor Telepon/WhatsApp *</label>
                             <input type="tel" id="business-phone" name="business-phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="business-email">Alamat Email</label>
+                            <label for="business-email">Alamat Email *</label>
                             <input type="email" id="business-email" name="business-email" required>
                         </div>
                         <div class="form-group">
-                            <label for="business-category">Kategori Usaha</label>
+                            <label for="business-category">Kategori Usaha *</label>
                             <select id="business-category" name="business-category" required>
                                 <option value="" disabled selected>Pilih kategori</option>
-                                <option value="food">Makanan & Minuman</option>
-                                <option value="craft">Aneka Produk</option>
-                                <option value="service">Jasa</option>
-                                <option value="equipment">Peralatan</option>
-                                <option value="agriculture">Pertanian</option>
-                                <option value="fishery">Perikanan</option>
-                                <option value="livestock">Peternakan</option>
-                                <option value="other">Lainnya</option>
+                                <option value="Makanan & Minuman">Makanan & Minuman</option>
+                                <option value="Aneka Produk">Aneka Produk</option>
+                                <option value="Jasa">Jasa</option>
+                                <option value="Peralatan">Peralatan</option>
+                                <option value="Pertanian">Pertanian</option>
+                                <option value="Perikanan">Perikanan</option>
+                                <option value="Peternakan">Peternakan</option>
+                                <option value="Lainnya">Lainnya</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="business-desc">Deskripsi Singkat Usaha</label>
+                            <label for="business-desc">Deskripsi Singkat Usaha *</label>
                             <textarea id="business-desc" name="business-desc" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="business-products">Produk/Jasa Unggulan</label>
+                            <textarea id="business-products" name="business-products"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="business-social">Media Sosial (jika ada)</label>
+                            <input type="text" id="business-social" name="business-social" placeholder="Contoh: @namausaha, link Facebook, dll">
                         </div>
                         <button type="submit" class="btn btn-primary" id="submitBtn">
                             <i class="fas fa-paper-plane"></i> Daftarkan UMKM
@@ -2767,19 +2877,17 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Pesan Cepat</h2>
-            <form id="quickOrderForm" action="https://formsubmit.co/lenterakaryasitubondo@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="Pesan Cepat dari Website UMKM Situbondo">
-                <input type="hidden" name="_captcha" value="false">
+            <form id="quickOrderForm">
                 <div class="form-group">
-                    <label for="quick-name">Nama Anda</label>
+                    <label for="quick-name">Nama Anda *</label>
                     <input type="text" id="quick-name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="quick-phone">Nomor Telepon</label>
+                    <label for="quick-phone">Nomor Telepon/WhatsApp *</label>
                     <input type="tel" id="quick-phone" name="phone" required>
                 </div>
                 <div class="form-group">
-                    <label for="quick-umkm">UMKM yang Diminati</label>
+                    <label for="quick-umkm">UMKM yang Diminati *</label>
                     <input type="text" id="quick-umkm" name="umkm" required>
                 </div>
                 <div class="form-group">
@@ -3115,69 +3223,50 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
             
-            // Kirim ke FormSubmit.co (email)
-            fetch(form.action, {
+            // Get form data
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            // Prepare WhatsApp message
+            const whatsappMessage = `*Pesan Cepat dari Website UMKM Situbondo*:\n\nNama: ${data.name}\nTelepon: ${data.phone}\nUMKM: ${data.umkm}\nPesan: ${data.message || 'Tidak ada pesan tambahan'}`;
+            const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
+            
+            // Send to WhatsApp
+            window.open(`https://wa.me/6287865614222?text=${encodedWhatsappMessage}`, '_blank');
+            
+            // Send to email via FormSubmit
+            fetch('https://formsubmit.co/ajax/lenterakaryasitubondo@gmail.com', {
                 method: 'POST',
-                body: new FormData(form),
                 headers: {
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                }
+                },
+                body: JSON.stringify({
+                    _subject: 'Pesan Cepat dari Website UMKM Situbondo',
+                    name: data.name,
+                    phone: data.phone,
+                    umkm: data.umkm,
+                    message: data.message || 'Tidak ada pesan tambahan',
+                    _captcha: false
+                })
             })
-            .then(response => {
-                if (response.ok) {
-                    // Kirim ke WhatsApp juga
-                    const name = form.querySelector('#quick-name').value;
-                    const phone = form.querySelector('#quick-phone').value;
-                    const umkm = form.querySelector('#quick-umkm').value;
-                    const message = form.querySelector('#quick-message').value || 'Tidak ada pesan tambahan';
-                    
-                    const whatsappMessage = `Pesan Cepat dari Website UMKM Situbondo:\n\nNama: ${name}\nTelepon: ${phone}\nUMKM: ${umkm}\nPesan: ${message}`;
-                    const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
-                    
-                    window.open(`https://wa.me/6287865614222?text=${encodedWhatsappMessage}`, '_blank');
-                    
-                    // Reset form
-                    form.reset();
-                    orderModal.classList.remove('show');
-                    document.body.style.overflow = '';
-                    
-                    // Tampilkan notifikasi sukses
-                    const formStatus = document.getElementById('formStatus');
-                    formStatus.textContent = 'Permintaan Anda telah terkirim. Kami akan segera menghubungi Anda.';
-                    formStatus.className = 'form-status success';
-                    formStatus.style.display = 'block';
-                    
-                    // Scroll ke form status
-                    formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                    throw new Error('Gagal mengirim pesan');
-                }
-            })
-            .catch(error => {
-                // Jika gagal ke email, coba hanya ke WhatsApp
-                const name = form.querySelector('#quick-name').value;
-                const phone = form.querySelector('#quick-phone').value;
-                const umkm = form.querySelector('#quick-umkm').value;
-                const message = form.querySelector('#quick-message').value || 'Tidak ada pesan tambahan';
-                
-                const whatsappMessage = `Pesan Cepat dari Website UMKM Situbondo:\n\nNama: ${name}\nTelepon: ${phone}\nUMKM: ${umkm}\nPesan: ${message}`;
-                const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
-                
-                window.open(`https://wa.me/6287865614222?text=${encodedWhatsappMessage}`, '_blank');
-                
-                // Reset form
+            .then(response => response.json())
+            .then(data => {
+                // Success
+                showFormStatus('Permintaan Anda telah terkirim. Kami akan segera menghubungi Anda.', 'success');
                 form.reset();
                 orderModal.classList.remove('show');
                 document.body.style.overflow = '';
-                
-                // Tampilkan notifikasi sukses
-                const formStatus = document.getElementById('formStatus');
-                formStatus.textContent = 'Permintaan Anda telah dikirim melalui WhatsApp. Kami akan segera menghubungi Anda.';
-                formStatus.className = 'form-status success';
-                formStatus.style.display = 'block';
-                
-                // Scroll ke form status
-                formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            })
+            .catch(error => {
+                // Fallback to just WhatsApp if email fails
+                showFormStatus('Permintaan Anda telah dikirim melalui WhatsApp. Kami akan segera menghubungi Anda.', 'success');
+                form.reset();
+                orderModal.classList.remove('show');
+                document.body.style.overflow = '';
             })
             .finally(() => {
                 // Reset button state
@@ -3264,11 +3353,11 @@
             const businessEmail = document.getElementById('business-email').value.trim();
             const businessCategory = document.getElementById('business-category').value;
             const businessDesc = document.getElementById('business-desc').value.trim();
+            const businessProducts = document.getElementById('business-products').value.trim();
+            const businessSocial = document.getElementById('business-social').value.trim();
             
             if (!businessName || !ownerName || !businessAddress || !businessPhone || !businessEmail || !businessCategory || !businessDesc) {
-                formStatus.textContent = 'Mohon lengkapi semua field yang wajib diisi';
-                formStatus.className = 'form-status error';
-                formStatus.style.display = 'block';
+                showFormStatus('Mohon lengkapi semua field yang wajib diisi', 'error');
                 return;
             }
             
@@ -3276,46 +3365,43 @@
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
             
-            // Kirim ke FormSubmit.co (email)
-            fetch(form.action, {
+            // Prepare WhatsApp message
+            const whatsappMessage = `*Pendaftaran UMKM Baru*:\n\nNama UMKM: ${businessName}\nPemilik: ${ownerName}\nAlamat: ${businessAddress}\nTelepon: ${businessPhone}\nEmail: ${businessEmail}\nKategori: ${businessCategory}\nDeskripsi: ${businessDesc}\nProduk Unggulan: ${businessProducts || '-'}\nMedia Sosial: ${businessSocial || '-'}`;
+            const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
+            
+            // Send to WhatsApp
+            window.open(`https://wa.me/6287865614222?text=${encodedWhatsappMessage}`, '_blank');
+            
+            // Send to email via FormSubmit
+            fetch('https://formsubmit.co/ajax/lenterakaryasitubondo@gmail.com', {
                 method: 'POST',
-                body: new FormData(form),
                 headers: {
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                }
+                },
+                body: JSON.stringify({
+                    _subject: 'Pendaftaran UMKM Baru',
+                    'Nama UMKM': businessName,
+                    'Nama Pemilik': ownerName,
+                    'Alamat UMKM': businessAddress,
+                    'Nomor Telepon': businessPhone,
+                    'Email': businessEmail,
+                    'Kategori Usaha': businessCategory,
+                    'Deskripsi Usaha': businessDesc,
+                    'Produk Unggulan': businessProducts || '-',
+                    'Media Sosial': businessSocial || '-',
+                    _captcha: false
+                })
             })
-            .then(response => {
-                if (response.ok) {
-                    // Kirim ke WhatsApp juga
-                    const whatsappMessage = `*Pendaftaran UMKM Baru*:\n\nNama UMKM: ${businessName}\nPemilik: ${ownerName}\nAlamat: ${businessAddress}\nTelepon: ${businessPhone}\nEmail: ${businessEmail}\nKategori: ${document.getElementById('business-category').options[document.getElementById('business-category').selectedIndex].text}\nDeskripsi: ${businessDesc}`;
-                    const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
-                    
-                    window.open(`https://wa.me/6287865614222?text=${encodedWhatsappMessage}`, '_blank');
-                    
-                    // Tampilkan pesan sukses
-                    formStatus.textContent = 'Terima kasih! Pendaftaran UMKM Anda telah terkirim. Kami akan segera menghubungi Anda untuk verifikasi lebih lanjut.';
-                    formStatus.className = 'form-status success';
-                    formStatus.style.display = 'block';
-                    
-                    // Reset form
-                    form.reset();
-                } else {
-                    throw new Error('Gagal mengirim ke email');
-                }
+            .then(response => response.json())
+            .then(data => {
+                // Success
+                showFormStatus('Terima kasih! Pendaftaran UMKM Anda telah terkirim. Kami akan segera menghubungi Anda untuk verifikasi lebih lanjut.', 'success');
+                form.reset();
             })
             .catch(error => {
-                // Jika gagal ke email, coba hanya ke WhatsApp
-                const whatsappMessage = `*Pendaftaran UMKM Baru*:\n\nNama UMKM: ${businessName}\nPemilik: ${ownerName}\nAlamat: ${businessAddress}\nTelepon: ${businessPhone}\nEmail: ${businessEmail}\nKategori: ${document.getElementById('business-category').options[document.getElementById('business-category').selectedIndex].text}\nDeskripsi: ${businessDesc}`;
-                const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
-                
-                window.open(`https://wa.me/6287865614222?text=${encodedWhatsappMessage}`, '_blank');
-                
-                // Tampilkan pesan sukses
-                formStatus.textContent = 'Pendaftaran Anda telah dikirim melalui WhatsApp. Kami akan segera menghubungi Anda untuk verifikasi lebih lanjut.';
-                formStatus.className = 'form-status success';
-                formStatus.style.display = 'block';
-                
-                // Reset form
+                // Fallback to just WhatsApp if email fails
+                showFormStatus('Pendaftaran Anda telah dikirim melalui WhatsApp. Kami akan segera menghubungi Anda untuk verifikasi lebih lanjut.', 'success');
                 form.reset();
             })
             .finally(() => {
@@ -3326,6 +3412,17 @@
             
             playButtonSound();
         });
+        
+        // Show form status message
+        function showFormStatus(message, type) {
+            const formStatus = document.getElementById('formStatus');
+            formStatus.textContent = message;
+            formStatus.className = `form-status ${type}`;
+            formStatus.style.display = 'block';
+            
+            // Scroll to status message
+            formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
         
         // Newsletter form submission
         document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
