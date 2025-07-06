@@ -1716,6 +1716,7 @@
             background-color: #f8f9fa;
         }
         
+        /* Enhanced Contact Form */
         .contact-form {
             background: white;
             padding: 4rem 3rem;
@@ -1723,6 +1724,19 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
             border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.03), transparent);
+            z-index: 0;
         }
         
         .contact-form:hover {
@@ -1738,6 +1752,7 @@
             position: relative;
             padding-bottom: 1.5rem;
             font-family: 'Playfair Display', serif;
+            z-index: 1;
         }
         
         .contact-form h3::after {
@@ -1749,6 +1764,168 @@
             height: 4px;
             background: var(--accent);
             border-radius: 2px;
+        }
+        
+        /* Form Input with Icon */
+        .form-input-group {
+            position: relative;
+            margin-bottom: 1.8rem;
+            z-index: 1;
+        }
+        
+        .form-input-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+        
+        .form-input-group input,
+        .form-input-group select,
+        .form-input-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        .form-input-group textarea {
+            padding-left: 1.5rem;
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-input-group input:focus,
+        .form-input-group select:focus,
+        .form-input-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+        }
+        
+        .form-input-group i {
+            position: absolute;
+            left: 1.2rem;
+            top: 3.2rem;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        /* Form Submit Button */
+        .form-submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--accent), #d9731f);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .form-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+        }
+        
+        .form-submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #d9731f, var(--accent));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .form-submit-btn:hover::after {
+            opacity: 1;
+        }
+        
+        /* Form Loading State */
+        .form-submit-btn.loading {
+            pointer-events: none;
+        }
+        
+        .form-submit-btn.loading::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 2;
+        }
+        
+        .form-submit-btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 3;
+        }
+        
+        /* Form Success Animation */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .form-success i {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            animation: bounceIn 0.8s;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .form-success h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .form-success p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
         
         /* Responsive */
@@ -2740,32 +2917,55 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Enhanced Registration Form -->
                 <div class="contact-form">
-                    <h3>Form Pendaftaran UMKM</h3>
-                    <div id="formStatus" class="form-status"></div>
-                    <form id="registerForm">
-                        <div class="form-group">
+                    <div id="formSuccess" class="form-success" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Pendaftaran Berhasil!</h4>
+                        <p>Terima kasih telah mendaftarkan UMKM Anda. Tim kami akan segera menghubungi Anda untuk verifikasi lebih lanjut.</p>
+                        <button class="btn btn-primary" id="newRegistrationBtn">
+                            <i class="fas fa-plus"></i> Daftarkan UMKM Lain
+                        </button>
+                    </div>
+                    
+                    <form id="registerForm" style="display: block;">
+                        <h3>Form Pendaftaran UMKM</h3>
+                        <div id="formStatus" class="form-status"></div>
+                        
+                        <div class="form-input-group">
                             <label for="business-name">Nama UMKM *</label>
-                            <input type="text" id="business-name" name="business-name" required>
+                            <i class="fas fa-store"></i>
+                            <input type="text" id="business-name" name="business-name" required placeholder="Contoh: Kue Lapis Legit Bu Siti">
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-input-group">
                             <label for="owner-name">Nama Pemilik *</label>
-                            <input type="text" id="owner-name" name="owner-name" required>
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="owner-name" name="owner-name" required placeholder="Nama lengkap pemilik usaha">
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-input-group">
                             <label for="business-address">Alamat UMKM *</label>
-                            <input type="text" id="business-address" name="business-address" required>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" id="business-address" name="business-address" required placeholder="Alamat lengkap usaha">
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-input-group">
                             <label for="business-phone">Nomor Telepon/WhatsApp *</label>
-                            <input type="tel" id="business-phone" name="business-phone" required>
+                            <i class="fas fa-phone-alt"></i>
+                            <input type="tel" id="business-phone" name="business-phone" required placeholder="Contoh: 081234567890">
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-input-group">
                             <label for="business-email">Alamat Email *</label>
-                            <input type="email" id="business-email" name="business-email" required>
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="business-email" name="business-email" required placeholder="Email aktif Anda">
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-input-group">
                             <label for="business-category">Kategori Usaha *</label>
+                            <i class="fas fa-tags"></i>
                             <select id="business-category" name="business-category" required>
                                 <option value="" disabled selected>Pilih kategori</option>
                                 <option value="Makanan & Minuman">Makanan & Minuman</option>
@@ -2778,19 +2978,24 @@
                                 <option value="Lainnya">Lainnya</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-input-group">
                             <label for="business-desc">Deskripsi Singkat Usaha *</label>
-                            <textarea id="business-desc" name="business-desc" required></textarea>
+                            <textarea id="business-desc" name="business-desc" required placeholder="Jelaskan secara singkat tentang usaha Anda"></textarea>
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-input-group">
                             <label for="business-products">Produk/Jasa Unggulan</label>
-                            <textarea id="business-products" name="business-products"></textarea>
+                            <textarea id="business-products" name="business-products" placeholder="Daftar produk atau jasa yang ditawarkan"></textarea>
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-input-group">
                             <label for="business-social">Media Sosial (jika ada)</label>
+                            <i class="fas fa-share-alt"></i>
                             <input type="text" id="business-social" name="business-social" placeholder="Contoh: @namausaha, link Facebook, dll">
                         </div>
-                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                        
+                        <button type="submit" class="form-submit-btn" id="submitBtn">
                             <i class="fas fa-paper-plane"></i> Daftarkan UMKM
                         </button>
                     </form>
@@ -3363,14 +3568,15 @@
             
             // Show loading state
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            submitBtn.classList.add('loading');
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Mengirim...';
             
             // Prepare WhatsApp message
             const whatsappMessage = `*Pendaftaran UMKM Baru*:\n\nNama UMKM: ${businessName}\nPemilik: ${ownerName}\nAlamat: ${businessAddress}\nTelepon: ${businessPhone}\nEmail: ${businessEmail}\nKategori: ${businessCategory}\nDeskripsi: ${businessDesc}\nProduk Unggulan: ${businessProducts || '-'}\nMedia Sosial: ${businessSocial || '-'}`;
             const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
             
             // Send to WhatsApp
-            window.open(`https://wa.me/6287865614222?text=${encodedWhatsappMessage}`, '_blank');
+            window.open(`https://wa.me/message/2A672ZFTMLKBO1?text=${encodedWhatsappMessage}`, '_blank');
             
             // Send to email via FormSubmit
             fetch('https://formsubmit.co/ajax/lenterakaryasitubondo@gmail.com', {
@@ -3395,9 +3601,12 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Success
-                showFormStatus('Terima kasih! Pendaftaran UMKM Anda telah terkirim. Kami akan segera menghubungi Anda untuk verifikasi lebih lanjut.', 'success');
-                form.reset();
+                // Success - show success message
+                form.style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+                
+                // Scroll to success message
+                document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth' });
             })
             .catch(error => {
                 // Fallback to just WhatsApp if email fails
@@ -3407,8 +3616,21 @@
             .finally(() => {
                 // Reset button state
                 submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
                 submitBtn.innerHTML = originalBtnText;
             });
+            
+            playButtonSound();
+        });
+        
+        // New registration button
+        document.getElementById('newRegistrationBtn').addEventListener('click', function() {
+            document.getElementById('formSuccess').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('registerForm').reset();
+            
+            // Scroll to form
+            document.getElementById('registerForm').scrollIntoView({ behavior: 'smooth' });
             
             playButtonSound();
         });
