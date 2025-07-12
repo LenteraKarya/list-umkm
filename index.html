@@ -1182,12 +1182,17 @@
         .form-input-group select,
         .form-input-group textarea {
             width: 100%;
-            padding: 1rem 1.5rem 1rem 3.5rem;
+            padding: 1rem 1.5rem;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             font-size: 1rem;
             transition: var(--transition);
             background-color: white;
+        }
+        
+        .form-input-group.with-icon input,
+        .form-input-group.with-icon select {
+            padding-left: 3.5rem;
         }
         
         .form-input-group textarea {
@@ -1212,28 +1217,36 @@
             font-size: 1.2rem;
         }
         
-        /* GPS Location Button - Improved for Mobile */
+        /* GPS Location Button - Improved */
+        .gps-button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.5rem;
+        }
+        
         .gps-button {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: var(--accent);
             color: white;
             border: none;
-            border-radius: 4px;
-            padding: 0.5rem 0.8rem;
-            font-size: 0.8rem;
+            border-radius: 6px;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(230, 126, 34, 0.2);
         }
         
         .gps-button:hover {
             background: #d9731f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+        
+        .gps-button i {
+            font-size: 0.9rem;
         }
         
         /* Character Counter */
@@ -1250,6 +1263,97 @@
         
         .char-counter.error {
             color: var(--error);
+        }
+        
+        /* Form Submit Button - Improved */
+        .form-submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--accent), #d9731f);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        
+        .form-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+            background: linear-gradient(135deg, #d9731f, var(--accent));
+        }
+        
+        .form-submit-btn.loading {
+            position: relative;
+            pointer-events: none;
+        }
+        
+        .form-submit-btn.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        /* Form Status Messages */
+        .form-status {
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .form-status.success {
+            background-color: rgba(56, 161, 105, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(56, 161, 105, 0.2);
+            display: block;
+        }
+        
+        .form-status.error {
+            background-color: rgba(229, 62, 62, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(229, 62, 62, 0.2);
+            display: block;
+        }
+        
+        /* Form Success Message */
+        .form-success {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(56, 161, 105, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(56, 161, 105, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .form-success i {
+            font-size: 3rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-success h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--success);
+        }
+        
+        .form-success p {
+            margin-bottom: 2rem;
+            color: var(--text-light);
         }
         
         /* PREMIUM FOOTER DESIGN */
@@ -1920,8 +2024,8 @@
             
             /* Improved GPS button for mobile */
             .gps-button {
-                padding: 0.5rem;
-                font-size: 0.7rem;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
             }
             
             .form-input-group i {
@@ -1988,12 +2092,22 @@
             .form-input-group input,
             .form-input-group select,
             .form-input-group textarea {
-                padding: 1rem 1.5rem 1rem 3rem;
+                padding: 1rem 1.5rem;
+            }
+            
+            .form-input-group.with-icon input,
+            .form-input-group.with-icon select {
+                padding-left: 3rem;
             }
             
             .form-input-group i {
                 left: 1rem;
                 top: 3rem;
+            }
+            
+            .gps-button {
+                padding: 0.5rem 0.7rem;
+                font-size: 0.7rem;
             }
         }
         
@@ -2051,8 +2165,8 @@
             
             /* Further improve GPS button for very small screens */
             .gps-button {
-                padding: 0.4rem;
-                font-size: 0.6rem;
+                padding: 0.5rem;
+                font-size: 0.7rem;
             }
             
             .gps-button i {
@@ -2357,52 +2471,55 @@
                         <h3>Form Pendaftaran UMKM</h3>
                         <div id="formStatus" class="form-status"></div>
                         
-                        <div class="form-input-group">
+                        <div class="form-input-group with-icon">
                             <label for="business-name">Nama UMKM *</label>
                             <i class="fas fa-store"></i>
                             <input type="text" id="business-name" name="business-name" required placeholder="Contoh: Kue Lapis Legit Bu Siti" pattern="[A-Za-z0-9 '-]+" title="Hanya huruf, angka, spasi, tanda petik satu (') dan tanda hubung (-) diperbolehkan">
                         </div>
                         
-                        <div class="form-input-group">
+                        <div class="form-input-group with-icon">
                             <label for="owner-name">Nama Pemilik *</label>
                             <i class="fas fa-user"></i>
                             <input type="text" id="owner-name" name="owner-name" required placeholder="Nama lengkap pemilik usaha" pattern="[A-Za-z ']+" title="Hanya huruf, spasi, dan tanda petik satu (') diperbolehkan">
                         </div>
                         
-                        <div class="form-input-group">
+                        <div class="form-input-group with-icon">
                             <label for="ktp-address">Alamat KTP *</label>
                             <i class="fas fa-id-card"></i>
                             <input type="text" id="ktp-address" name="ktp-address" required placeholder="Alamat sesuai KTP">
                         </div>
                         
-                        <div class="form-input-group">
+                        <div class="form-input-group with-icon">
                             <label for="nik">NIK KTP *</label>
                             <i class="fas fa-address-card"></i>
                             <input type="text" id="nik" name="nik" required placeholder="16 digit NIK KTP" pattern="[0-9]{16}" title="NIK harus berupa 16 digit angka" maxlength="16">
                         </div>
                         
-                        <div class="form-input-group" style="position: relative;">
+                        <div class="form-input-group with-icon">
                             <label for="business-address">Alamat UMKM *</label>
                             <i class="fas fa-map-marker-alt"></i>
                             <input type="text" id="business-address" name="business-address" required placeholder="Alamat lengkap usaha">
+                        </div>
+                        
+                        <div class="gps-button-container">
                             <button type="button" class="gps-button" id="getLocationBtn">
-                                <i class="fas fa-map-marker-alt"></i> GPS
+                                <i class="fas fa-map-marker-alt"></i> Dapatkan Lokasi GPS
                             </button>
                         </div>
                         
-                        <div class="form-input-group">
+                        <div class="form-input-group with-icon">
                             <label for="business-phone">Nomor Telepon/WhatsApp *</label>
                             <i class="fas fa-phone-alt"></i>
                             <input type="tel" id="business-phone" name="business-phone" required placeholder="Contoh: 081234567890" pattern="(08|62)[0-9]{10,12}" title="Nomor harus diawali 08 atau 62 dan terdiri dari 12-13 digit">
                         </div>
                         
-                        <div class="form-input-group">
+                        <div class="form-input-group with-icon">
                             <label for="business-email">Alamat Email *</label>
                             <i class="fas fa-envelope"></i>
                             <input type="email" id="business-email" name="business-email" required placeholder="Email aktif Anda" pattern="[a-z0-9._%+-]+@(gmail|ymail|hotmail)\.com$" title="Gunakan email @gmail.com, @ymail.com, atau @hotmail.com">
                         </div>
                         
-                        <div class="form-input-group">
+                        <div class="form-input-group with-icon">
                             <label for="business-category">Kategori Usaha *</label>
                             <i class="fas fa-tags"></i>
                             <select id="business-category" name="business-category" required>
@@ -2430,7 +2547,7 @@
                             <div class="char-counter" id="products-counter">0/300 karakter</div>
                         </div>
                         
-                        <div class="form-input-group">
+                        <div class="form-input-group with-icon">
                             <label for="business-social">Media Sosial (jika ada)</label>
                             <i class="fas fa-share-alt"></i>
                             <input type="text" id="business-social" name="business-social" placeholder="Contoh: @namausaha, link Facebook, dll" maxlength="30">
