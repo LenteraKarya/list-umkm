@@ -1217,55 +1217,6 @@
             font-size: 1.2rem;
         }
         
-        /* GPS Location Button - Improved */
-        .gps-button-container {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 0.5rem;
-        }
-        
-        .gps-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.8rem 1.2rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 2px 8px rgba(230, 126, 34, 0.2);
-            font-weight: 500;
-        }
-        
-        .gps-button:hover {
-            background: #d9731f;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
-        }
-        
-        .gps-button i {
-            font-size: 0.9rem;
-        }
-        
-        .gps-button.loading {
-            position: relative;
-            pointer-events: none;
-        }
-        
-        .gps-button.loading::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        
         /* Character Counter */
         .char-counter {
             font-size: 0.8rem;
@@ -2039,12 +1990,6 @@
                 padding: 3rem 2rem;
             }
             
-            /* Improved GPS button for mobile */
-            .gps-button {
-                padding: 0.8rem 1rem;
-                font-size: 0.85rem;
-            }
-            
             .form-input-group i {
                 top: 3.1rem;
             }
@@ -2121,11 +2066,6 @@
                 left: 1rem;
                 top: 3rem;
             }
-            
-            .gps-button {
-                padding: 0.7rem 0.9rem;
-                font-size: 0.8rem;
-            }
         }
         
         @media (max-width: 400px) {
@@ -2178,16 +2118,6 @@
             
             .category-btn {
                 flex-shrink: 0;
-            }
-            
-            /* Further improve GPS button for very small screens */
-            .gps-button {
-                padding: 0.7rem;
-                font-size: 0.75rem;
-            }
-            
-            .gps-button i {
-                font-size: 0.8rem;
             }
         }
     </style>
@@ -2577,13 +2507,6 @@
                             <label for="business-address">Alamat UMKM *</label>
                             <i class="fas fa-map-marker-alt"></i>
                             <input type="text" id="business-address" name="business-address" required placeholder="Alamat lengkap usaha">
-                        </div>
-                        
-                        <div class="gps-button-container">
-                            <button type="button" class="gps-button" id="getLocationBtn">
-                                <i class="fas fa-map-marker-alt"></i> Dapatkan Lokasi GPS
-                            </button>
-                            <span id="locationStatus" style="display:none; font-size:0.8rem; color:var(--accent); margin-top:0.5rem;"></span>
                         </div>
                         
                         <div class="form-input-group with-icon">
@@ -3233,136 +3156,6 @@
         // Validate business name
         document.getElementById('business-name').addEventListener('input', function() {
             this.value = this.value.replace(/[^A-Za-z0-9 '-]/g, '');
-        });
-        
-        // Get GPS location - Improved with loading state and better error handling
-        document.getElementById('getLocationBtn').addEventListener('click', function() {
-            const gpsButton = this;
-            const locationStatus = document.getElementById('locationStatus');
-            const businessAddress = document.getElementById('business-address');
-            const originalBtnText = gpsButton.innerHTML;
-            
-            // Reset status
-            locationStatus.style.display = 'none';
-            
-            if (navigator.geolocation) {
-                // Show loading state
-                gpsButton.disabled = true;
-                gpsButton.classList.add('loading');
-                gpsButton.innerHTML = '<i class="fas fa-spinner"></i> Mendeteksi...';
-                
-                // Options for geolocation
-                const options = {
-                    enableHighAccuracy: true,
-                    timeout: 10000, // 10 detik timeout
-                    maximumAge: 0 // Tidak menggunakan cache lokasi lama
-                };
-                
-                navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        const latitude = position.coords.latitude;
-                        const longitude = position.coords.longitude;
-                        
-                        // Update status
-                        locationStatus.textContent = 'Lokasi ditemukan, mendapatkan alamat...';
-                        locationStatus.style.display = 'block';
-                        locationStatus.style.color = 'var(--success)';
-                        
-                        // Use OpenStreetMap Nominatim API to get address
-                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Gagal mendapatkan alamat dari koordinat GPS');
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                let address = '';
-                                
-                                // Bangun alamat dari data yang diterima
-                                if (data.address) {
-                                    const addr = data.address;
-                                    address = [
-                                        addr.road ? addr.road : '',
-                                        addr.house_number ? addr.house_number : '',
-                                        addr.village ? addr.village : addr.neighbourhood ? addr.neighbourhood : '',
-                                        addr.city_district ? addr.city_district : '',
-                                        addr.city ? addr.city : addr.town ? addr.town : '',
-                                        addr.postcode ? addr.postcode : ''
-                                    ].filter(Boolean).join(', ');
-                                }
-                                
-                                if (!address && data.display_name) {
-                                    address = data.display_name;
-                                }
-                                
-                                if (!address) {
-                                    address = `Lokasi GPS: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
-                                } else {
-                                    address += ` (Koordinat: ${latitude.toFixed(6)}, ${longitude.toFixed(6)})`;
-                                }
-                                
-                                businessAddress.value = address;
-                                
-                                // Update status
-                                locationStatus.textContent = 'Lokasi berhasil ditemukan dan alamat telah diisi';
-                                locationStatus.style.color = 'var(--success)';
-                                
-                                // Scroll ke field alamat
-                                businessAddress.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            })
-                            .catch(error => {
-                                // Jika gagal mendapatkan alamat, tetap isi dengan koordinat
-                                businessAddress.value = `Lokasi GPS: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
-                                
-                                // Update status
-                                locationStatus.textContent = 'Lokasi ditemukan tetapi alamat tidak dapat ditentukan';
-                                locationStatus.style.color = 'var(--warning)';
-                            })
-                            .finally(() => {
-                                // Reset button state
-                                gpsButton.disabled = false;
-                                gpsButton.classList.remove('loading');
-                                gpsButton.innerHTML = originalBtnText;
-                            });
-                    },
-                    function(error) {
-                        let errorMessage = '';
-                        switch(error.code) {
-                            case error.PERMISSION_DENIED:
-                                errorMessage = "Izin lokasi ditolak. Silakan aktifkan izin lokasi di pengaturan browser Anda.";
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                errorMessage = "Informasi lokasi tidak tersedia. Pastikan GPS atau jaringan aktif.";
-                                break;
-                            case error.TIMEOUT:
-                                errorMessage = "Waktu permintaan lokasi habis. Pastikan sinyal GPS kuat.";
-                                break;
-                            case error.UNKNOWN_ERROR:
-                                errorMessage = "Terjadi kesalahan tidak diketahui saat mendapatkan lokasi.";
-                                break;
-                        }
-                        
-                        // Update status
-                        locationStatus.textContent = errorMessage;
-                        locationStatus.style.display = 'block';
-                        locationStatus.style.color = 'var(--error)';
-                        
-                        // Reset button state
-                        gpsButton.disabled = false;
-                        gpsButton.classList.remove('loading');
-                        gpsButton.innerHTML = originalBtnText;
-                    },
-                    options
-                );
-            } else {
-                // Update status
-                locationStatus.textContent = 'Browser Anda tidak mendukung geolocation';
-                locationStatus.style.display = 'block';
-                locationStatus.style.color = 'var(--error)';
-            }
-            
-            playButtonSound();
         });
         
         // Newsletter form submission
