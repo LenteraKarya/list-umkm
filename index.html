@@ -1077,64 +1077,320 @@
             font-size: 1.05rem;
         }
         
-        /* Floating Contact Buttons */
-        .contact-bar {
-            position: fixed;
-            bottom: 3rem;
-            right: 3rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            z-index: 100;
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.8rem;
+            position: relative;
         }
         
-        .contact-btn {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
             transition: var(--transition);
+            background-color: white;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-status {
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .form-status.success {
+            background-color: rgba(56, 161, 105, 0.1);
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+        
+        .form-status.error {
+            background-color: rgba(229, 62, 62, 0.1);
+            color: var(--error);
+            border-left: 4px solid var(--error);
+        }
+        
+        /* Register Section */
+        .register {
+            background-color: #f8f9fa;
+        }
+        
+        /* Enhanced Contact Form */
+        .contact-form {
+            background: white;
+            padding: 4rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
             position: relative;
             overflow: hidden;
         }
         
-        .contact-btn::after {
+        .contact-form::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(0);
-            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.03), transparent);
+            z-index: 0;
+        }
+        
+        .contact-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border-color: rgba(230, 126, 34, 0.1);
+        }
+        
+        .contact-form h3 {
+            margin-bottom: 2.5rem;
+            color: var(--dark);
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            z-index: 1;
+        }
+        
+        .contact-form h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Form Input with Icon */
+        .form-input-group {
+            position: relative;
+            margin-bottom: 1.8rem;
+            z-index: 1;
+        }
+        
+        .form-input-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+        
+        .form-input-group input,
+        .form-input-group select,
+        .form-input-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
             transition: var(--transition);
+            background-color: white;
         }
         
-        .contact-btn:hover::after {
-            transform: scale(1);
+        .form-input-group textarea {
+            padding-left: 1.5rem;
+            min-height: 120px;
+            resize: vertical;
         }
         
-        .contact-btn:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        .form-input-group input:focus,
+        .form-input-group select:focus,
+        .form-input-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
         }
         
-        .whatsapp {
-            background: linear-gradient(135deg, #25D366, #128C7E);
+        .form-input-group i {
+            position: absolute;
+            left: 1.2rem;
+            top: 3.2rem;
+            color: var(--accent);
+            font-size: 1.2rem;
         }
         
-        .order {
+        /* Form Submit Button */
+        .form-submit-btn {
+            width: 100%;
+            padding: 1.2rem;
             background: linear-gradient(135deg, var(--accent), #d9731f);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
         
-        .phone {
-            background: linear-gradient(135deg, var(--success), #2f855a);
+        .form-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+        }
+        
+        .form-submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #d9731f, var(--accent));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .form-submit-btn:hover::after {
+            opacity: 1;
+        }
+        
+        /* Form Loading State */
+        .form-submit-btn.loading {
+            pointer-events: none;
+        }
+        
+        .form-submit-btn.loading::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 2;
+        }
+        
+        .form-submit-btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 3;
+        }
+        
+        /* Form Success Animation */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .form-success i {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            animation: bounceIn 0.8s;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .form-success h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .form-success p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        /* GPS Location Button */
+        .gps-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .gps-button:hover {
+            background: #d9731f;
+        }
+        
+        /* Character Counter */
+        .char-counter {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: right;
+            margin-top: 0.3rem;
+        }
+        
+        .char-counter.warning {
+            color: var(--warning);
+        }
+        
+        .char-counter.error {
+            color: var(--error);
         }
         
         /* PREMIUM FOOTER DESIGN */
@@ -1651,283 +1907,6 @@
             opacity: 1;
         }
         
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 1.8rem;
-            position: relative;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-            color: var(--dark);
-            font-size: 1.05rem;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-            background-color: white;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
-        }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .form-status {
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            display: none;
-        }
-        
-        .form-status.success {
-            background-color: rgba(56, 161, 105, 0.1);
-            color: var(--success);
-            border-left: 4px solid var(--success);
-        }
-        
-        .form-status.error {
-            background-color: rgba(229, 62, 62, 0.1);
-            color: var(--error);
-            border-left: 4px solid var(--error);
-        }
-        
-        /* Register Section */
-        .register {
-            background-color: #f8f9fa;
-        }
-        
-        /* Enhanced Contact Form */
-        .contact-form {
-            background: white;
-            padding: 4rem 3rem;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(230, 126, 34, 0.03), transparent);
-            z-index: 0;
-        }
-        
-        .contact-form:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            border-color: rgba(230, 126, 34, 0.1);
-        }
-        
-        .contact-form h3 {
-            margin-bottom: 2.5rem;
-            color: var(--dark);
-            font-size: 2rem;
-            position: relative;
-            padding-bottom: 1.5rem;
-            font-family: 'Playfair Display', serif;
-            z-index: 1;
-        }
-        
-        .contact-form h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        
-        /* Form Input with Icon */
-        .form-input-group {
-            position: relative;
-            margin-bottom: 1.8rem;
-            z-index: 1;
-        }
-        
-        .form-input-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-            color: var(--dark);
-            font-size: 1.05rem;
-        }
-        
-        .form-input-group input,
-        .form-input-group select,
-        .form-input-group textarea {
-            width: 100%;
-            padding: 1rem 1.5rem 1rem 3.5rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-            background-color: white;
-        }
-        
-        .form-input-group textarea {
-            padding-left: 1.5rem;
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .form-input-group input:focus,
-        .form-input-group select:focus,
-        .form-input-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
-        }
-        
-        .form-input-group i {
-            position: absolute;
-            left: 1.2rem;
-            top: 3.2rem;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-        
-        /* Form Submit Button */
-        .form-submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, var(--accent), #d9731f);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 1rem;
-            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .form-submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
-        }
-        
-        .form-submit-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #d9731f, var(--accent));
-            opacity: 0;
-            transition: var(--transition);
-            z-index: -1;
-        }
-        
-        .form-submit-btn:hover::after {
-            opacity: 1;
-        }
-        
-        /* Form Loading State */
-        .form-submit-btn.loading {
-            pointer-events: none;
-        }
-        
-        .form-submit-btn.loading::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            z-index: 2;
-        }
-        
-        .form-submit-btn.loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            z-index: 3;
-        }
-        
-        /* Form Success Animation */
-        .form-success {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .form-success i {
-            font-size: 4rem;
-            color: var(--success);
-            margin-bottom: 1.5rem;
-            animation: bounceIn 0.8s;
-        }
-        
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.1);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        
-        .form-success h4 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .form-success p {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        
         /* Responsive */
         @media (max-width: 1200px) {
             .logo {
@@ -2024,11 +2003,6 @@
                 padding: 1rem;
             }
             
-            .contact-bar {
-                bottom: 2rem;
-                right: 2rem;
-            }
-            
             /* Improved Mobile dropdown menu */
             .dropdown {
                 display: flex;
@@ -2121,17 +2095,6 @@
                 padding: 0 1rem 1rem;
             }
             
-            .contact-bar {
-                bottom: 1.5rem;
-                right: 1.5rem;
-            }
-            
-            .contact-btn {
-                width: 60px;
-                height: 60px;
-                font-size: 1.8rem;
-            }
-            
             .footer-container {
                 grid-template-columns: 1fr 1fr;
             }
@@ -2190,17 +2153,6 @@
             .action-buttons {
                 flex-direction: column;
                 gap: 1rem;
-            }
-            
-            .contact-bar {
-                bottom: 1rem;
-                right: 1rem;
-            }
-            
-            .contact-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 1.6rem;
             }
             
             .footer-container {
@@ -2326,7 +2278,6 @@
                     </div>
                 </div>
                 
-                <a href="#map">Peta UMKM</a>
                 <a href="#register">Daftarkan UMKM</a>
                 <a href="#contact">Hubungi Admin</a>
             </div>
@@ -2486,17 +2437,6 @@
             </div>
         </section>
         
-        <!-- Map Section -->
-        <section class="map-section" id="map">
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126646.2573893107!2d113.9024237!3d-7.7057342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6c9f6c5173b37%3A0x5027a76e3561fa0!2sSitubondo%2C%20Situbondo%20Regency%2C%20East%20Java!5e0!3m2!1sen!2sid!4v1621234567890!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <div class="map-overlay">
-                <h3>Sebaran UMKM di Kabupaten Situbondo</h3>
-                <p>Temukan lokasi UMKM terdekat di sekitar Anda. Dukung produk lokal untuk memajukan perekonomian daerah.</p>
-            </div>
-        </section>
-        
         <!-- Register Section -->
         <section class="register" id="register">
             <h2 class="section-title">Daftarkan UMKM Anda</h2>
@@ -2551,31 +2491,46 @@
                         <div class="form-input-group">
                             <label for="business-name">Nama UMKM *</label>
                             <i class="fas fa-store"></i>
-                            <input type="text" id="business-name" name="business-name" required placeholder="Contoh: Kue Lapis Legit Bu Siti">
+                            <input type="text" id="business-name" name="business-name" required placeholder="Contoh: Kue Lapis Legit Bu Siti" pattern="[A-Za-z0-9 '-]+" title="Hanya huruf, angka, spasi, tanda petik satu (') dan tanda hubung (-) diperbolehkan">
                         </div>
                         
                         <div class="form-input-group">
                             <label for="owner-name">Nama Pemilik *</label>
                             <i class="fas fa-user"></i>
-                            <input type="text" id="owner-name" name="owner-name" required placeholder="Nama lengkap pemilik usaha">
+                            <input type="text" id="owner-name" name="owner-name" required placeholder="Nama lengkap pemilik usaha" pattern="[A-Za-z ']+" title="Hanya huruf, spasi, dan tanda petik satu (') diperbolehkan">
                         </div>
                         
                         <div class="form-input-group">
+                            <label for="ktp-address">Alamat KTP *</label>
+                            <i class="fas fa-id-card"></i>
+                            <input type="text" id="ktp-address" name="ktp-address" required placeholder="Alamat sesuai KTP">
+                        </div>
+                        
+                        <div class="form-input-group">
+                            <label for="nik">NIK KTP *</label>
+                            <i class="fas fa-address-card"></i>
+                            <input type="text" id="nik" name="nik" required placeholder="16 digit NIK KTP" pattern="[0-9]{16}" title="NIK harus berupa 16 digit angka" maxlength="16">
+                        </div>
+                        
+                        <div class="form-input-group" style="position: relative;">
                             <label for="business-address">Alamat UMKM *</label>
                             <i class="fas fa-map-marker-alt"></i>
                             <input type="text" id="business-address" name="business-address" required placeholder="Alamat lengkap usaha">
+                            <button type="button" class="gps-button" id="getLocationBtn">
+                                <i class="fas fa-map-marker-alt"></i> Dapatkan Lokasi
+                            </button>
                         </div>
                         
                         <div class="form-input-group">
                             <label for="business-phone">Nomor Telepon/WhatsApp *</label>
                             <i class="fas fa-phone-alt"></i>
-                            <input type="tel" id="business-phone" name="business-phone" required placeholder="Contoh: 081234567890">
+                            <input type="tel" id="business-phone" name="business-phone" required placeholder="Contoh: 081234567890" pattern="(08|62)[0-9]{10,12}" title="Nomor harus diawali 08 atau 62 dan terdiri dari 12-13 digit">
                         </div>
                         
                         <div class="form-input-group">
                             <label for="business-email">Alamat Email *</label>
                             <i class="fas fa-envelope"></i>
-                            <input type="email" id="business-email" name="business-email" required placeholder="Email aktif Anda">
+                            <input type="email" id="business-email" name="business-email" required placeholder="Email aktif Anda" pattern="[a-z0-9._%+-]+@(gmail|ymail|hotmail)\.com$" title="Gunakan email @gmail.com, @ymail.com, atau @hotmail.com">
                         </div>
                         
                         <div class="form-input-group">
@@ -2596,18 +2551,21 @@
                         
                         <div class="form-input-group">
                             <label for="business-desc">Deskripsi Singkat Usaha *</label>
-                            <textarea id="business-desc" name="business-desc" required placeholder="Jelaskan secara singkat tentang usaha Anda"></textarea>
+                            <textarea id="business-desc" name="business-desc" required placeholder="Jelaskan secara singkat tentang usaha Anda (maksimal 300 karakter)" maxlength="300"></textarea>
+                            <div class="char-counter" id="desc-counter">0/300 karakter</div>
                         </div>
                         
                         <div class="form-input-group">
                             <label for="business-products">Produk/Jasa Unggulan</label>
-                            <textarea id="business-products" name="business-products" placeholder="Daftar produk atau jasa yang ditawarkan"></textarea>
+                            <textarea id="business-products" name="business-products" placeholder="Daftar produk atau jasa yang ditawarkan (maksimal 300 karakter)" maxlength="300"></textarea>
+                            <div class="char-counter" id="products-counter">0/300 karakter</div>
                         </div>
                         
                         <div class="form-input-group">
                             <label for="business-social">Media Sosial (jika ada)</label>
                             <i class="fas fa-share-alt"></i>
-                            <input type="text" id="business-social" name="business-social" placeholder="Contoh: @namausaha, link Facebook, dll">
+                            <input type="text" id="business-social" name="business-social" placeholder="Contoh: @namausaha, link Facebook, dll" maxlength="30">
+                            <div class="char-counter" id="social-counter">0/30 karakter</div>
                         </div>
                         
                         <button type="submit" class="form-submit-btn" id="submitBtn">
@@ -2617,19 +2575,6 @@
                 </div>
             </div>
         </section>
-    </div>
-    
-    <!-- Floating Contact Buttons -->
-    <div class="contact-bar">
-        <a href="https://wa.me/6287865614222" class="contact-btn whatsapp" target="_blank" aria-label="Hubungi via WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="tel:+6287865614222" class="contact-btn phone" aria-label="Telepon Kami">
-            <i class="fas fa-phone"></i>
-        </a>
-        <button class="contact-btn order" id="quick-order" aria-label="Pesan Cepat">
-            <i class="fas fa-store"></i>
-        </button>
     </div>
     
     <!-- PREMIUM FOOTER DESIGN -->
@@ -2648,7 +2593,6 @@
                 <ul class="footer-links">
                     <li><a href="#home">Beranda</a></li>
                     <li><a href="#umkm-list">Daftar UMKM</a></li>
-                    <li><a href="#map">Peta UMKM</a></li>
                     <li><a href="#register">Daftarkan UMKM</a></li>
                     <li><a href="https://wa.me/6287865614222" target="_blank">Hubungi Admin</a></li>
                 </ul>
@@ -2691,35 +2635,6 @@
             &copy; 2025 Direktori UMKM Situbondo. Semua hak dilindungi. | <a href="#">Kebijakan Privasi</a> | <a href="#">Syarat & Ketentuan</a>
         </div>
     </footer>
-    
-    <!-- Order Modal -->
-    <div class="modal" id="orderModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Pesan Cepat</h2>
-            <form id="quickOrderForm">
-                <div class="form-group">
-                    <label for="quick-name">Nama Anda *</label>
-                    <input type="text" id="quick-name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="quick-phone">Nomor Telepon/WhatsApp *</label>
-                    <input type="tel" id="quick-phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="quick-umkm">UMKM yang Diminati *</label>
-                    <input type="text" id="quick-umkm" name="umkm" required>
-                </div>
-                <div class="form-group">
-                    <label for="quick-message">Pesan Tambahan</label>
-                    <textarea id="quick-message" name="message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Kirim Permintaan
-                </button>
-            </form>
-        </div>
-    </div>
     
     <!-- Search Modal -->
     <div class="search-modal" id="searchModal">
@@ -3005,98 +2920,6 @@
             document.body.style.overflow = '';
         });
         
-        // Quick order modal
-        const quickOrderBtn = document.getElementById('quick-order');
-        const orderModal = document.getElementById('orderModal');
-        const closeModal = document.querySelector('.close-modal');
-        
-        quickOrderBtn.addEventListener('click', function() {
-            orderModal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-            playButtonSound();
-        });
-        
-        closeModal.addEventListener('click', function() {
-            orderModal.classList.remove('show');
-            document.body.style.overflow = '';
-        });
-        
-        window.addEventListener('click', function(e) {
-            if (e.target === orderModal) {
-                orderModal.classList.remove('show');
-                document.body.style.overflow = '';
-            }
-            if (e.target === document.getElementById('imageModal')) {
-                document.getElementById('imageModal').classList.remove('show');
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Quick order form submission
-        document.getElementById('quickOrderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = this;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-            
-            // Get form data
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-            
-            // Prepare WhatsApp message
-            const whatsappMessage = `*Pesan Cepat dari Website UMKM Situbondo*:\n\nNama: ${data.name}\nTelepon: ${data.phone}\nUMKM: ${data.umkm}\nPesan: ${data.message || 'Tidak ada pesan tambahan'}`;
-            const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
-            
-            // Send to WhatsApp
-            window.open(`https://wa.me/6287865614222?text=${encodedWhatsappMessage}`, '_blank');
-            
-            // Send to email via FormSubmit
-            fetch('https://formsubmit.co/ajax/lenterakaryasitubondo@gmail.com', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    _subject: 'Pesan Cepat dari Website UMKM Situbondo',
-                    name: data.name,
-                    phone: data.phone,
-                    umkm: data.umkm,
-                    message: data.message || 'Tidak ada pesan tambahan',
-                    _captcha: false
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Success
-                showFormStatus('Permintaan Anda telah terkirim. Kami akan segera menghubungi Anda.', 'success');
-                form.reset();
-                orderModal.classList.remove('show');
-                document.body.style.overflow = '';
-            })
-            .catch(error => {
-                // Fallback to just WhatsApp if email fails
-                showFormStatus('Permintaan Anda telah dikirim melalui WhatsApp. Kami akan segera menghubungi Anda.', 'success');
-                form.reset();
-                orderModal.classList.remove('show');
-                document.body.style.overflow = '';
-            })
-            .finally(() => {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            });
-            
-            playButtonSound();
-        });
-        
         // Category filtering
         document.querySelectorAll('.category-btn').forEach(button => {
             button.addEventListener('click', function() {
@@ -3168,6 +2991,8 @@
             // Validasi form
             const businessName = document.getElementById('business-name').value.trim();
             const ownerName = document.getElementById('owner-name').value.trim();
+            const ktpAddress = document.getElementById('ktp-address').value.trim();
+            const nik = document.getElementById('nik').value.trim();
             const businessAddress = document.getElementById('business-address').value.trim();
             const businessPhone = document.getElementById('business-phone').value.trim();
             const businessEmail = document.getElementById('business-email').value.trim();
@@ -3176,8 +3001,26 @@
             const businessProducts = document.getElementById('business-products').value.trim();
             const businessSocial = document.getElementById('business-social').value.trim();
             
-            if (!businessName || !ownerName || !businessAddress || !businessPhone || !businessEmail || !businessCategory || !businessDesc) {
+            if (!businessName || !ownerName || !ktpAddress || !nik || !businessAddress || !businessPhone || !businessEmail || !businessCategory || !businessDesc) {
                 showFormStatus('Mohon lengkapi semua field yang wajib diisi', 'error');
+                return;
+            }
+            
+            // Validasi NIK (16 digit angka)
+            if (!/^\d{16}$/.test(nik)) {
+                showFormStatus('NIK harus berupa 16 digit angka', 'error');
+                return;
+            }
+            
+            // Validasi nomor telepon (awal 08 atau 62, 12-13 digit)
+            if (!/^(08|62)\d{10,12}$/.test(businessPhone)) {
+                showFormStatus('Nomor telepon harus diawali 08 atau 62 dan terdiri dari 12-13 digit angka', 'error');
+                return;
+            }
+            
+            // Validasi email
+            if (!/^[a-z0-9._%+-]+@(gmail|ymail|hotmail)\.com$/i.test(businessEmail)) {
+                showFormStatus('Gunakan email @gmail.com, @ymail.com, atau @hotmail.com', 'error');
                 return;
             }
             
@@ -3187,7 +3030,7 @@
             submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Mengirim...';
             
             // Prepare WhatsApp message
-            const whatsappMessage = `*Pendaftaran UMKM Baru*:\n\nNama UMKM: ${businessName}\nPemilik: ${ownerName}\nAlamat: ${businessAddress}\nTelepon: ${businessPhone}\nEmail: ${businessEmail}\nKategori: ${businessCategory}\nDeskripsi: ${businessDesc}\nProduk Unggulan: ${businessProducts || '-'}\nMedia Sosial: ${businessSocial || '-'}`;
+            const whatsappMessage = `*Pendaftaran UMKM Baru*:\n\nNama UMKM: ${businessName}\nPemilik: ${ownerName}\nAlamat KTP: ${ktpAddress}\nNIK: ${nik}\nAlamat UMKM: ${businessAddress}\nTelepon: ${businessPhone}\nEmail: ${businessEmail}\nKategori: ${businessCategory}\nDeskripsi: ${businessDesc}\nProduk Unggulan: ${businessProducts || '-'}\nMedia Sosial: ${businessSocial || '-'}`;
             const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
             
             // Send to WhatsApp
@@ -3204,6 +3047,8 @@
                     _subject: 'Pendaftaran UMKM Baru',
                     'Nama UMKM': businessName,
                     'Nama Pemilik': ownerName,
+                    'Alamat KTP': ktpAddress,
+                    'NIK': nik,
                     'Alamat UMKM': businessAddress,
                     'Nomor Telepon': businessPhone,
                     'Email': businessEmail,
@@ -3244,6 +3089,11 @@
             document.getElementById('registerForm').style.display = 'block';
             document.getElementById('registerForm').reset();
             
+            // Reset character counters
+            document.getElementById('desc-counter').textContent = '0/300 karakter';
+            document.getElementById('products-counter').textContent = '0/300 karakter';
+            document.getElementById('social-counter').textContent = '0/30 karakter';
+            
             // Scroll to form
             document.getElementById('registerForm').scrollIntoView({ behavior: 'smooth' });
             
@@ -3260,6 +3110,111 @@
             // Scroll to status message
             formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+        
+        // Character counters
+        document.getElementById('business-desc').addEventListener('input', function() {
+            const counter = document.getElementById('desc-counter');
+            const length = this.value.length;
+            counter.textContent = `${length}/300 karakter`;
+            
+            if (length > 250) {
+                counter.classList.add('warning');
+                counter.classList.remove('error');
+            } else if (length > 290) {
+                counter.classList.remove('warning');
+                counter.classList.add('error');
+            } else {
+                counter.classList.remove('warning', 'error');
+            }
+        });
+        
+        document.getElementById('business-products').addEventListener('input', function() {
+            const counter = document.getElementById('products-counter');
+            const length = this.value.length;
+            counter.textContent = `${length}/300 karakter`;
+            
+            if (length > 250) {
+                counter.classList.add('warning');
+                counter.classList.remove('error');
+            } else if (length > 290) {
+                counter.classList.remove('warning');
+                counter.classList.add('error');
+            } else {
+                counter.classList.remove('warning', 'error');
+            }
+        });
+        
+        document.getElementById('business-social').addEventListener('input', function() {
+            const counter = document.getElementById('social-counter');
+            const length = this.value.length;
+            counter.textContent = `${length}/30 karakter`;
+            
+            if (length > 25) {
+                counter.classList.add('warning');
+                counter.classList.remove('error');
+            } else if (length > 28) {
+                counter.classList.remove('warning');
+                counter.classList.add('error');
+            } else {
+                counter.classList.remove('warning', 'error');
+            }
+        });
+        
+        // Auto capitalize owner name
+        document.getElementById('owner-name').addEventListener('input', function() {
+            this.value = this.value.replace(/[^A-Za-z ']/g, '').replace(/\b\w/g, l => l.toUpperCase());
+        });
+        
+        // Validate business name
+        document.getElementById('business-name').addEventListener('input', function() {
+            this.value = this.value.replace(/[^A-Za-z0-9 '-]/g, '');
+        });
+        
+        // Get GPS location
+        document.getElementById('getLocationBtn').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        
+                        // Use OpenStreetMap Nominatim API to get address
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const address = data.display_name || 'Lokasi tidak dapat ditentukan';
+                                document.getElementById('business-address').value = address;
+                                
+                                // Show success message
+                                showFormStatus('Lokasi berhasil ditemukan dan alamat telah diisi', 'success');
+                            })
+                            .catch(error => {
+                                showFormStatus('Gagal mendapatkan alamat dari koordinat GPS', 'error');
+                            });
+                    },
+                    function(error) {
+                        let errorMessage = 'Gagal mendapatkan lokasi GPS: ';
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage += "Izin ditolak oleh pengguna";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage += "Informasi lokasi tidak tersedia";
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage += "Permintaan lokasi timeout";
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                errorMessage += "Error tidak diketahui";
+                                break;
+                        }
+                        showFormStatus(errorMessage, 'error');
+                    }
+                );
+            } else {
+                showFormStatus('Browser tidak mendukung geolocation', 'error');
+            }
+        });
         
         // Newsletter form submission
         document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
