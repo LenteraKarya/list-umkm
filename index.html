@@ -2367,8 +2367,69 @@
                 </div>
            
                 <!-- UMKM ITEM 2 - ANEKA PRODUK -->
-
-                
+                <div class="umkm-card" data-category="craft">
+                    <span class="umkm-badge craft">Aneka Produk</span>
+                    <div class="umkm-image-container">
+                        <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Kerajinan Bambu Karya Mandiri" class="umkm-image lazy" loading="lazy">
+                    </div>
+                    <div class="umkm-details">
+                        <h3 class="umkm-title">Kerajinan Bambu Karya Mandiri</h3>
+                        <div class="umkm-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Desa Banyuputih, Kec. Banyuputih</span>
+                        </div>
+                        <div class="umkm-contact">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+62 813 4567 8901</span>
+                        </div>
+                        <span class="umkm-category">Kerajinan Tangan</span>
+                        
+                        <div class="umkm-detail-expanded">
+                            <div class="umkm-carousel">
+                                <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Kerajinan Bambu - Produk" class="umkm-main-image lazy" loading="lazy" id="main-image-2">
+                                <div class="umkm-thumbnails">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Kerajinan Bambu - Produk" class="thumbnail active lazy" loading="lazy" onclick="changeMainImage('main-image-2', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Kerajinan Bambu - Proses Pembuatan" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-2', this)">
+                                    <img src="https://i.imgur.com/ACIsEuy.jpg" alt="Kerajinan Bambu - Kemasan" class="thumbnail lazy" loading="lazy" onclick="changeMainImage('main-image-2', this)">
+                                </div>
+                            </div>
+                            
+                            <p class="umkm-description">
+                                Kerajinan bambu berkualitas tinggi dengan desain tradisional dan modern. 
+                                Produk kami mencakup peralatan rumah tangga, furniture, dan dekorasi. 
+                                Dibuat oleh pengrajin lokal dengan keahlian turun temurun.
+                            </p>
+                            
+                            <div class="umkm-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Berdiri Sejak:</span>
+                                    <span class="spec-value">2010</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Jam Operasional:</span>
+                                    <span class="spec-value">08.00 - 16.00 (Senin-Sabtu)</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Produk Unggulan:</span>
+                                    <span class="spec-value">Tempat tisu, Vas bunga, Rak buku, Lampu hias</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Bahan Baku:</span>
+                                    <span class="spec-value">Bambu petung, Bambu apus, Bambu wulung</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Pemesanan:</span>
+                                    <span class="spec-value">Bisa custom sesuai permintaan</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-outline btn-small toggle-description">Detail</button>
+                            <a href="https://wa.me/6287865614222" class="btn btn-primary btn-small" target="_blank">Hubungi Admin</a>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- UMKM ITEM 8 - PETERNAKAN -->
                 <div class="umkm-card" data-category="livestock">
@@ -2522,6 +2583,7 @@
                             <button type="button" class="gps-button" id="getLocationBtn">
                                 <i class="fas fa-map-marker-alt"></i> Dapatkan Lokasi GPS
                             </button>
+                            <span id="locationStatus" style="display:none; font-size:0.8rem; color:var(--accent); margin-top:0.5rem;"></span>
                         </div>
                         
                         <div class="form-input-group with-icon">
@@ -3176,31 +3238,86 @@
         // Get GPS location - Improved with loading state and better error handling
         document.getElementById('getLocationBtn').addEventListener('click', function() {
             const gpsButton = this;
+            const locationStatus = document.getElementById('locationStatus');
+            const businessAddress = document.getElementById('business-address');
             const originalBtnText = gpsButton.innerHTML;
+            
+            // Reset status
+            locationStatus.style.display = 'none';
             
             if (navigator.geolocation) {
                 // Show loading state
                 gpsButton.disabled = true;
                 gpsButton.classList.add('loading');
-                gpsButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mendeteksi...';
+                gpsButton.innerHTML = '<i class="fas fa-spinner"></i> Mendeteksi...';
+                
+                // Options for geolocation
+                const options = {
+                    enableHighAccuracy: true,
+                    timeout: 10000, // 10 detik timeout
+                    maximumAge: 0 // Tidak menggunakan cache lokasi lama
+                };
                 
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
                         const latitude = position.coords.latitude;
                         const longitude = position.coords.longitude;
                         
+                        // Update status
+                        locationStatus.textContent = 'Lokasi ditemukan, mendapatkan alamat...';
+                        locationStatus.style.display = 'block';
+                        locationStatus.style.color = 'var(--success)';
+                        
                         // Use OpenStreetMap Nominatim API to get address
-                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
-                            .then(response => response.json())
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Gagal mendapatkan alamat dari koordinat GPS');
+                                }
+                                return response.json();
+                            })
                             .then(data => {
-                                const address = data.display_name || 'Lokasi tidak dapat ditentukan';
-                                document.getElementById('business-address').value = address;
+                                let address = '';
                                 
-                                // Show success message
-                                showFormStatus('Lokasi berhasil ditemukan dan alamat telah diisi', 'success');
+                                // Bangun alamat dari data yang diterima
+                                if (data.address) {
+                                    const addr = data.address;
+                                    address = [
+                                        addr.road ? addr.road : '',
+                                        addr.house_number ? addr.house_number : '',
+                                        addr.village ? addr.village : addr.neighbourhood ? addr.neighbourhood : '',
+                                        addr.city_district ? addr.city_district : '',
+                                        addr.city ? addr.city : addr.town ? addr.town : '',
+                                        addr.postcode ? addr.postcode : ''
+                                    ].filter(Boolean).join(', ');
+                                }
+                                
+                                if (!address && data.display_name) {
+                                    address = data.display_name;
+                                }
+                                
+                                if (!address) {
+                                    address = `Lokasi GPS: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+                                } else {
+                                    address += ` (Koordinat: ${latitude.toFixed(6)}, ${longitude.toFixed(6)})`;
+                                }
+                                
+                                businessAddress.value = address;
+                                
+                                // Update status
+                                locationStatus.textContent = 'Lokasi berhasil ditemukan dan alamat telah diisi';
+                                locationStatus.style.color = 'var(--success)';
+                                
+                                // Scroll ke field alamat
+                                businessAddress.scrollIntoView({ behavior: 'smooth', block: 'center' });
                             })
                             .catch(error => {
-                                showFormStatus('Gagal mendapatkan alamat dari koordinat GPS', 'error');
+                                // Jika gagal mendapatkan alamat, tetap isi dengan koordinat
+                                businessAddress.value = `Lokasi GPS: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+                                
+                                // Update status
+                                locationStatus.textContent = 'Lokasi ditemukan tetapi alamat tidak dapat ditentukan';
+                                locationStatus.style.color = 'var(--warning)';
                             })
                             .finally(() => {
                                 // Reset button state
@@ -3210,31 +3327,39 @@
                             });
                     },
                     function(error) {
-                        let errorMessage = 'Gagal mendapatkan lokasi GPS: ';
+                        let errorMessage = '';
                         switch(error.code) {
                             case error.PERMISSION_DENIED:
-                                errorMessage += "Izin ditolak oleh pengguna";
+                                errorMessage = "Izin lokasi ditolak. Silakan aktifkan izin lokasi di pengaturan browser Anda.";
                                 break;
                             case error.POSITION_UNAVAILABLE:
-                                errorMessage += "Informasi lokasi tidak tersedia";
+                                errorMessage = "Informasi lokasi tidak tersedia. Pastikan GPS atau jaringan aktif.";
                                 break;
                             case error.TIMEOUT:
-                                errorMessage += "Permintaan lokasi timeout";
+                                errorMessage = "Waktu permintaan lokasi habis. Pastikan sinyal GPS kuat.";
                                 break;
                             case error.UNKNOWN_ERROR:
-                                errorMessage += "Error tidak diketahui";
+                                errorMessage = "Terjadi kesalahan tidak diketahui saat mendapatkan lokasi.";
                                 break;
                         }
-                        showFormStatus(errorMessage, 'error');
+                        
+                        // Update status
+                        locationStatus.textContent = errorMessage;
+                        locationStatus.style.display = 'block';
+                        locationStatus.style.color = 'var(--error)';
                         
                         // Reset button state
                         gpsButton.disabled = false;
                         gpsButton.classList.remove('loading');
                         gpsButton.innerHTML = originalBtnText;
-                    }
+                    },
+                    options
                 );
             } else {
-                showFormStatus('Browser tidak mendukung geolocation', 'error');
+                // Update status
+                locationStatus.textContent = 'Browser Anda tidak mendukung geolocation';
+                locationStatus.style.display = 'block';
+                locationStatus.style.color = 'var(--error)';
             }
             
             playButtonSound();
